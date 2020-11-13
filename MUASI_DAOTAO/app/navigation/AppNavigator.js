@@ -19,8 +19,14 @@ const TabBarComponent = props => <BottomTabBar {...props} />;
 const Auth = createStackNavigator({
   [SCREEN_ROUTER.LOGIN]: LoginScreen,
   [SCREEN_ROUTER.REGISTER]: RegisterScreen,
-  [SCREEN_ROUTER.FORGOT_PASS]: ForgotPasswordScreen
-});
+  [SCREEN_ROUTER.FORGOT_PASS]: ForgotPasswordScreen,
+
+
+},
+  // {
+  //   headerMode: 'none',
+  // }
+);
 
 const tabbarIcons = {
   [SCREEN_ROUTER.HOME]: R.images.ic_home,
@@ -97,6 +103,6 @@ export default createAppContainer(
     },
     {
       initialRouteName: SCREEN_ROUTER.AUTH
-    }
+    },
   )
 );

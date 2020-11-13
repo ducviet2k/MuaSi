@@ -7,7 +7,9 @@ const SCREEN_ROUTER = {
   FORGOT_PASS: "ForgotPassword",
   REGISTER: "Register",
   USER: "User",
-  NOF: "Nof"
+  NOF: "Nof",
+
+
 };
 
 export { SCREEN_ROUTER };

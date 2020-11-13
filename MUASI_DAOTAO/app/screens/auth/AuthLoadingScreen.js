@@ -13,11 +13,17 @@ import i18 from '@i18';
 
 export default class AuthLoadingScreen extends Component {
 
-    componentDidMount() {
-        // load something and check login
-        setTimeout(() => {
-            NavigationUtil.navigate("Login");
-        }, 200);
+    componentDidMount = async () => {
+        try {
+            const token = await AsyncStorage.getItem('token')
+            if (token && token.length > 0) {
+                NavigationUtil.navigate(SCREEN_ROUTER.MAIN);
+            } else {
+                NavigationUtil.navigate(SCREEN_ROUTER.LOGIN);
+            }
+        } catch (error) {
+            NavigationUtil.navigate(SCREEN_ROUTER.LOGIN);
+        }
 
     }
 
