@@ -7,6 +7,7 @@ import LoginScreen from '../screens/auth/LoginScreen';
 import RegisterScreen from '../screens/auth/RegisterScreen';
 import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen';
 import HomeScreen from '@screen/HomeScreen';
+import ForgotPassWordTwo from '../screens/auth/ForgotPassWordTwo';
 import UserScreen from '../screens/UserScreen';
 import NotificationScreen from '../screens/NotificationScreen';
 import { SCREEN_ROUTER } from '@constant';
@@ -20,12 +21,12 @@ const Auth = createStackNavigator({
   [SCREEN_ROUTER.LOGIN]: LoginScreen,
   [SCREEN_ROUTER.REGISTER]: RegisterScreen,
   [SCREEN_ROUTER.FORGOT_PASS]: ForgotPasswordScreen,
-
+  [SCREEN_ROUTER.RECOVER]: ForgotPassWordTwo,
 
 },
-  // {
-  //   headerMode: 'none',
-  // }
+  {
+    headerMode: 'none',
+  }
 );
 
 const tabbarIcons = {
@@ -65,8 +66,16 @@ const Main = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: R.strings.user
       }
-    }
+    },
+    // [SCREEN_ROUTER.RECOVER]: {
+    //   screen: ForgotPassWordTwo,
+    //   title: R.strings.user,
+    //   navigationOptions: {
+    //     tabBarLabel: R.strings.user
+    //   }
+    // }
   },
+
   {
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, tintColor }) => getTabBarIcon(navigation, focused, tintColor)

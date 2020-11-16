@@ -16,7 +16,7 @@ export default class LoginScreen extends Component {
         error: null,
         data: {},
         phoneNumber: "0968189970",
-        password: "123"
+        password: "z5LOEO"
     }
     render() {
         

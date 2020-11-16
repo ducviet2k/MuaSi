@@ -8,7 +8,7 @@ const SCREEN_ROUTER = {
   REGISTER: "Register",
   USER: "User",
   NOF: "Nof",
-
+  RECOVER: "Recover"
 
 };
 

@@ -3,16 +3,30 @@ import { View, Text, TextInput, StyleSheet, SafeAreaView, Image, TouchableOpacit
 import R from '@R';
 import reactotron from '@app/debug/ReactotronConfig';
 import { requestForgetPass } from '@api';
-
+import NavigationUtil from '../../navigation/NavigationUtil'
+import { SCREEN_ROUTER } from '@app/constants/Constant'
 export default class ForgotPassword extends Component {
     state = {
         isLoading: false,
         error: null,
         data: {},
+        validated: false,
         email: ""
-
     };
 
+    validate = (text) => {
+        console.log(text);
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (reg.test(text) === false) {
+            console.log("Email sai kí tự");
+            this.setState({ email: text })
+            return false;
+        }
+        else {
+            this.setState({ email: text })
+            console.log("Email đúng");
+        }
+    }
     render() {
         return (
             <SafeAreaView style={styles.container}>
@@ -24,17 +38,13 @@ export default class ForgotPassword extends Component {
                 </View>
 
                 <View style={styles.Input_ForgotPassword}>
-                    <Text style={styles.inputTitle}>Email</Text>
+                    <Text style={styles.inputTitle}
+                    >Email</Text>
                     <TextInput style={styles.Text_Email}
-                        onChangeText={(newText) => {
-                            this.setState({
-                                email: newText
-
-                            })
-
-                        }}>
-
+                        value={this.setState.email}
+                        onChangeText={(newText) => this.validate(newText)}>
                     </TextInput>
+
                 </View>
 
                 <TouchableOpacity
@@ -43,12 +53,13 @@ export default class ForgotPassword extends Component {
                             result = await requestForgetPass({
                                 "email": this.state.email
                             })
-
+                            NavigationUtil.navigate(SCREEN_ROUTER.RECOVER)
                         } catch (error) {
                             alert(error.message)
                         }
 
                     }}
+
                     style={styles.btn_confirm}>
                     <View style={styles.Text_btn}>
                         <Text>Xác nhận</Text>
@@ -61,6 +72,8 @@ export default class ForgotPassword extends Component {
                     </View>
 
                 </TouchableOpacity>
+
+
 
             </SafeAreaView>
         );
@@ -126,7 +139,12 @@ const styles = StyleSheet.create({
         marginLeft: 15
     },
     Text_Email: {
-        marginLeft: 15
+        marginLeft: 15,
+
     },
+    error: {
+        borderWidth: 3,
+        borderColor: 'red'
+    }
 
 })
