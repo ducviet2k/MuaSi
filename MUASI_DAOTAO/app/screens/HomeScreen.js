@@ -8,13 +8,18 @@ import Loading from '@component/Loading'
 import { SCREEN_ROUTER } from '@constant'
 import R from '@R'
 import CustomHome from '@component/CustomHome'
-
+import DropDownPicker from 'react-native-dropdown-picker';
+import api from '@api'
 export default class HomeScreen extends Component {
   state = {
     isLoading: true,
     isError: false,
     data: {},
+    province: 'Ha Noi',
+    // province_id: ''
+
   }
+
 
   componentDidMount = async () => {
     try {
@@ -44,12 +49,15 @@ export default class HomeScreen extends Component {
 
   render() {
 
+
     const { isLoading, isError, data } = this.state
     if (isLoading) {
       return (
         <Loading />
       )
     }
+
+
 
     return (
       <SafeAreaView
@@ -87,7 +95,31 @@ export default class HomeScreen extends Component {
 
                         </TextInput>
                       </View>
-                      <View style={styles.input_aside}>
+                      <DropDownPicker
+
+                        items={[
+
+                          // { province_id }
+                          { label: 'Hanoi', value: 'Ha Noi' },
+                          { label: 'HCM', value: 'TP Ho Chi Minh' },
+                          { label: 'DANANG', value: 'Da Nang' },
+                          { label: 'LANGSON', value: 'Lang Son' },
+                          { label: 'HUNGYEN', value: 'Hung Yen' },
+
+                        ]}
+                        defaultValue={this.state.province}
+                        containerStyle={{ height: 40, width: 91 }}
+                        style={styles.boder}
+                        itemStyle={{
+                          justifyContent: 'flex-start'
+                        }}
+                        dropDownStyle={{ backgroundColor: '#fafafa' }}
+                        onChangeItem={item => this.setState({
+                          province: item.value
+                        })}
+                      />
+                      {/* <View style={styles.input_aside}>
+
                         <View>
                           <Text style={styles.text_aside}> Toàn quốc</Text>
                         </View>
@@ -97,7 +129,7 @@ export default class HomeScreen extends Component {
                             source={R.images.ic_dow}
                           />
                         </View>
-                      </View>
+                      </View> */}
                     </View>
                     <View style={styles.suggestions}>
                       <Text style={{ color: '#fff' }} >Để tìm kiếm khách hàng được tốt nhất bạn nên đăng ký đúng danh mục sản phẩm! </Text>
@@ -348,5 +380,13 @@ const styles = StyleSheet.create({
     height: 16,
     width: 16,
     marginRight: 5
+  },
+  boder: {
+    backgroundColor: '#fff',
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
+    borderBottomEndRadius: 20,
+    borderBottomLeftRadius: 20,
+
   }
 })

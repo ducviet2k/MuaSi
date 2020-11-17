@@ -4,6 +4,7 @@ import R from '@R';
 import NavigationUtil from '../../navigation/NavigationUtil';
 import { requestRegister } from '@api'
 import reactotron from '@app/debug/ReactotronConfig';
+import DropDownPicker from 'react-native-dropdown-picker';
 class LoginScreen extends Component {
     state = {
         isLoading: false,
@@ -12,6 +13,7 @@ class LoginScreen extends Component {
         phoneNumber: "",
         password: "",
         device_id: "",
+        // province: 'Ha Noi'
         // email: "",
         // fullname: "",
         // province_id: ""
@@ -62,15 +64,19 @@ class LoginScreen extends Component {
                             </TextInput>
                         </View>
                         {/* Tinh Thanh */}
+                        <View style={styles.Province}>
+                            <View style={styles.Input_province}>
+                                <Text style={styles.inputTitle}>Tỉnh/Thành phố</Text>
+                                <TextInput style={styles.Text_input}
+                                    onChangeText={(newText) => {
+                                        // province_id: newText
+                                    }}>
 
-                        <View style={styles.Input_email_name_address_pass}>
-                            <Text style={styles.inputTitle}>Tỉnh/Thành phố</Text>
-                            <TextInput style={styles.Text_input}
-                                onChangeText={(newText) => {
-                                    // province_id: newText
-                                }}>
+                                </TextInput>
 
-                            </TextInput>
+                            </View>
+
+
                         </View>
                         {/* Mk */}
                         <View style={styles.Input_email_name_address_pass}>
@@ -177,14 +183,28 @@ const styles = StyleSheet.create({
         shadowOpacity: 1,
         shadowRadius: 15,
     },
+    Province: {
+        flexDirection: 'row',
+
+    },
     Input_email_name_address_pass: {
         height: 59,
         borderColor: '#fff',
         borderWidth: 1,
         borderBottomColor: '#D8D8D8',
         borderBottomWidth: 1,
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
 
+
+    },
+    Input_province: {
+        height: 59,
+        borderColor: '#fff',
+        borderWidth: 1,
+        borderBottomColor: '#D8D8D8',
+        borderBottomWidth: 1,
+        backgroundColor: '#fff',
+        flex: 1,
     },
     Input_retype_pass: {
         marginTop: 18,
@@ -233,3 +253,22 @@ const styles = StyleSheet.create({
 
 
 })
+
+{/* <DropDownPicker
+
+items={[
+    { label: 'Hanoi', value: 'Ha Noi' },
+    { label: 'HCM', value: 'TP Ho Chi Minh' },
+    { label: 'DANANG', value: 'Da Nang' },
+]}
+defaultValue={this.state.province}
+containerStyle={{ height: 40, }}
+style={{ backgroundColor: '#fafafa' }}
+itemStyle={{
+    justifyContent: 'flex-start'
+}}
+dropDownStyle={{ backgroundColor: '#fafafa' }}
+onChangeItem={item => this.setState({
+    province: item.value
+})}
+/> */}
