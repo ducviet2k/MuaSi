@@ -21,10 +21,11 @@ export default class TinmuaScreen extends Component {
         try {
             const response = await requestTinMua();
             const jsonResponse = response.data;
-            // alert(JSON.stringify(jsonResponse))
             this.setState({
-                data: jsonResponse
+                data: jsonResponse.data
             })
+            alert(JSON.stringify(data))
+
         } catch (error) {
 
         }
@@ -37,11 +38,11 @@ export default class TinmuaScreen extends Component {
                     img={R.images.ic_backk}
                     label="Tin Mua Của Bạn"
                     imgMessage={R.images.Ic_add}
-                    action={this.addtin}
+                    actionback={this.addtin}
                 />
-                <Text>{JSON.stringify(this.state.data)}</Text>
+                {/* <Text>{JSON.stringify(this.state.data)}</Text> */}
                 <FlatList
-                    // data={}
+                    data={this.state.data}
                     renderItem={({ item, index }) => {
                         return (
                             <CustomItemHome item={item} index={index} />
@@ -49,18 +50,12 @@ export default class TinmuaScreen extends Component {
                     }}
 
                 />
-                <CustomItemHome
-                    namekey="agsajdada"
-                    username="dat"
-                    phone="0813187312"
-                    address="dahha"
-                    created_date="02/1/2010"
-                />
+
             </SafeAreaView>
         )
     }
     addtin = () => {
-        NavigationUtil.navigate(SCREEN_ROUTER.UPDATE_USER_INFO)
+        NavigationUtil.goBack()
     }
 }
 

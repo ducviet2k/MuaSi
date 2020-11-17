@@ -66,8 +66,11 @@ export default class ChangePassScreen extends Component {
                     <View style={styles.info_update}>
                         <TouchableOpacity style={styles.up_click}
                             onPress={async () => {
-
+                                const { oldPass, newPass } = this.state
                                 try {
+                                    result = await requestChangePass({
+
+                                    });
 
                                 } catch (err) {
 

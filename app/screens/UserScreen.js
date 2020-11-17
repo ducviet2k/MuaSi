@@ -33,6 +33,7 @@ class UserScreen extends Component {
 
     componentDidMount = async () => {
         try {
+
             const response = await requestUserInfo();
             const jsonResponse = response.data;
             this.setState({
@@ -40,7 +41,10 @@ class UserScreen extends Component {
                 isError: false,
                 data: jsonResponse,
 
+
             })
+
+            console.log("token", jsonResponse.token);
 
         } catch (error) {
             this.setState({

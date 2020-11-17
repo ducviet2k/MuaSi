@@ -17,13 +17,13 @@ import R from '@R'
 
 export default class CustomItemHome extends Component {
     render() {
-        const { namekey, username, phone, address, created_date } = this.props
+        const { name, username, phone, address, created_date } = this.props.item
         return (
 
             <View style={styles.list_item} >
                 <View style={styles.item_name}>
                     <Text style={{ fontSize: 20, }}>
-                        {namekey}
+                        {name}
                     </Text>
 
                 </View>

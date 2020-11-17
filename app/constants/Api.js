@@ -65,7 +65,13 @@ export const requestUserInfo = () => {
 
 export const requestTinMua = () => {
   return handleResult(
-    getAxios.get(`ListPost`)
+    getAxios.get('ListPost', {
+      params: {
+        page: 1,
+        type: 1
+      }
+    }
+    )
   );
 };
 
